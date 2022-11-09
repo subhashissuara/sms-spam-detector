@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Spam Detector</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+</head>
+
+<body>
+    <a class="github-fork-ribbon" href="https://subhashissuara.com" data-ribbon="Fork me on GitHub"
+        title="Fork me on GitHub">Fork me on GitHub</a>
+
+    <!-- Background Animation Start -->
+    <div class="bg bg-effect-light"></div>
+    <!-- Background Animation End -->
+
+    <!-- Website Title -->
+    <header>
+        <div class="container">
+            <h2 class='container-heading'>SMS Spam Detector</h2>
+        </div>
+    </header>
+
+    <!-- Text Area -->
+    {% if (prediction != 1 and prediction != 0) %}
+    <div class="container">
+        <form action="{{ url_for('detect') }}" method="POST">
+            <textarea class="message-box" name="message" rows=15 cols=40 placeholder="Enter Your Message Here..."
+                required></textarea><br />
+            <input type="submit" class="detect-button" value="Detect SMS Type">
+        </form>
+    </div>
+    {% endif %}
+
+    <!-- Result -->
+    <div class="container">
+        <div class="results">
+            {% if prediction == 1 %}
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <h1>Be careful! This is a spam SMS!</h1>
+            <a href="/"><button class="detect-button">Try Again</button></a>
+            {% elif prediction == 0 %}
+            <i class="fa-solid fa-envelope-circle-check"></i>
+            <h1>Nothing to worry about! This is not a spam SMS!</h1>
+            <a href="/"><button class="detect-button">Try Again</button></a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class='footer'>
+        <p class='footer-description'>Made by <a href="https://subhashissuara.com" target="_blank"
+                class="contact-link">Subhashis Suara</a> &
+            <a href="https://www.linkedin.com/in/siddharth-das-2108at" target="_blank" class="contact-link">Siddharth
+                Das</a>
+        </p>
+    </div>
+
+</body>
+
+</html>
