@@ -8,7 +8,9 @@ The SMS Spam Collection is a set of SMS tagged messages that have been collected
 
 ## How does it work?
 
-From the dataset, we dropped unnecessary columns i.e. 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'. Then we renamed the columns i.e. v1 and v2 to label and message respectively. For classification purpose we replaced not spam label with 0 and spam with 1. We preprocessed our data by removing all special characters and stopwords. We then used Porter Stemmer for stemming the words. After joining the stemmed words we have created a corpus of messages. The next step was to create a Bag of Words model which we accomplished using CountVectorize function from sklearn library. We then fit the Multinomial Naive Bayes to the training set and then saved the model using the pickle module.
+Demo Website: [sms-spam-detector.centralindia.cloudapp.azure.com](http://sms-spam-detector.centralindia.cloudapp.azure.com:5000)
+
+From the dataset, we dropped unnecessary columns i.e., 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'. Then we renamed the columns i.e., v1 and v2 to label and message respectively. For classification purpose we replaced not spam label with 0 and spam with 1. We preprocessed our data by removing all special characters and stopwords. We then used Porter Stemmer for stemming the words. After joining the stemmed words we have created a corpus of messages. The next step was to create a Bag of Words model which we accomplished using CountVectorize function from sklearn library. We then fit the Multinomial Naive Bayes to the training set and then saved the model using the pickle module.
 
 For deployment purpose we have used Flask. Using the pickle module, we loaded the Multinomial Naive Bayes model and the CountVectorizer object. The Flask app has 2 routes. First route is the home page route and second route is the detect route. The home page consists of a text fiels to input the sms message and a button to detect the sms type. Upon clicking the detect button, the Flask app uses the Multinomial model to classify if the message is spam or not spam. The detect page then displays the appropriate output on the webpage.
 
